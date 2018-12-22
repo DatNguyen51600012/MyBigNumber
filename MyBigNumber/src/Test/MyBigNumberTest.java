@@ -10,7 +10,7 @@ import javaapplication.MyBigNumber;
 
 /**
  *
- * @author Hy's PC
+ * @author Nguyễn Thành Đạt
  */
 public class MyBigNumberTest implements IReceiver {
 
