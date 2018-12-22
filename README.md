@@ -2,6 +2,7 @@
 Phần Mềm Cộng Hai Số được viết trên IDE Netbean
 -----------------------------------------------------------------------------
 Phần mềm đã được test 
+
 File Testcover.jpg là kết quả test của các test case trong file MyBigNumberTest.java
 
 -----------------------------------------------------------------------------
