@@ -48,10 +48,10 @@ public class MyBigNumberTest implements IReceiver {
             MyBigNumberTest test = new MyBigNumberTest();
             MyBigNumber mybignumber = new MyBigNumber(test);
             System.out.println("Test 1:");
-            System.out.println("PASS : " + mybignumber.sum("9", "99") + "\n");
+            System.out.println( mybignumber.sum("9", "99") + "\n");
         } catch (NumberFormatException e) {
             System.out.println(e);
-            System.out.println("FAIL\n");
+            
         }
     }
     
@@ -60,10 +60,10 @@ public class MyBigNumberTest implements IReceiver {
              MyBigNumberTest test = new MyBigNumberTest();
             MyBigNumber mybignumber = new MyBigNumber(test);
             System.out.println("Test 2:");
-            System.out.println("PASS : " + mybignumber.sum("99", "9") + "\n");
+            System.out.println( mybignumber.sum("99", "9") + "\n");
         } catch (NumberFormatException e) {
             System.out.println(e);
-            System.out.println("FAIL\n");
+          
         }
     }
 
@@ -72,10 +72,10 @@ public class MyBigNumberTest implements IReceiver {
             MyBigNumberTest test = new MyBigNumberTest();
             MyBigNumber mybignumber = new MyBigNumber(test);
             System.out.println("Test 3:");
-            System.out.println("PASS : " + mybignumber.sum("99", "90") + "\n");
+            System.out.println( mybignumber.sum("99", "90") + "\n");
         } catch (NumberFormatException e) {
             System.out.println(e);
-            System.out.println("FAIL\n");
+            
         }
     }
 
@@ -87,7 +87,7 @@ public class MyBigNumberTest implements IReceiver {
             System.out.println(mybignumber.sum("999", "99") + "\n");
         } catch (NumberFormatException e) {
             System.out.println(e);
-            System.out.println("FAIL\n");
+            
         }
     }
 
@@ -99,7 +99,7 @@ public class MyBigNumberTest implements IReceiver {
             System.out.println(mybignumber.sum("A", "999") + "\n");
         } catch (NumberFormatException e) {
             System.out.println(e) ;
-            System.out.println("FAIL\n");
+           
         }
     }
     
@@ -111,7 +111,7 @@ public class MyBigNumberTest implements IReceiver {
             System.out.println(mybignumber.sum("8978", "9458*") + "\n");
         } catch (NumberFormatException e) {
             System.out.println(e);
-            System.out.println("FAIL\n");
+            
         }
     }
     // Trường hợp số thứ nhất chứa kí tự đặc biệt
@@ -123,7 +123,7 @@ public class MyBigNumberTest implements IReceiver {
             System.out.println(mybignumber.sum("8978/", "9458*") + "\n");
         } catch (NumberFormatException e) {
             System.out.println(e);
-            System.out.println("FAIL\n");
+           
         }
     }
     // Trường hợp số thứ nhất âm
@@ -135,7 +135,7 @@ public class MyBigNumberTest implements IReceiver {
             System.out.println(mybignumber.sum("-54", "98") + "\n");
         } catch (NumberFormatException e) {
             System.out.println(e);
-            System.out.println("FAIL\n");
+            
         }
     }
     // Trường hợp Null hai số nhập vào
@@ -144,10 +144,10 @@ public class MyBigNumberTest implements IReceiver {
              MyBigNumberTest test = new MyBigNumberTest();
             MyBigNumber mybignumber = new MyBigNumber(test);
             System.out.println("Test 9:");
-            System.out.println(mybignumber.sum("0", "") + "\n");
+            System.out.println(mybignumber.sum("6556"," ") + "\n");
         } catch (NumberFormatException e) {
             System.out.println(e);
-            System.out.println("FAIL\n");
+            
         }
     }
     // Trường hợp có chữ trong số thứ nhất 
@@ -159,7 +159,7 @@ public class MyBigNumberTest implements IReceiver {
             System.out.println(mybignumber.sum("98g4", "99") + "\n");
         } catch (NumberFormatException e) {
             System.out.println(e);
-            System.out.println("FAIL\n");
+           
         }
     }
     // Trường hợp có chữ trong số thứ 2
@@ -171,7 +171,7 @@ public class MyBigNumberTest implements IReceiver {
             System.out.println(mybignumber.sum("9887", "897a") + "\n");
         } catch (NumberFormatException e) {
             System.out.println(e);
-            System.out.println("FAIL\n");
+          
         }
     }
     // TRường hợp Hai số có chứa chữ
@@ -183,19 +183,19 @@ public class MyBigNumberTest implements IReceiver {
             System.out.println(mybignumber.sum("897a54", "8798a546") + "\n");
         } catch (NumberFormatException e) {
             System.out.println(e);
-            System.out.println("FAIL\n");
+            
         }
     }
-    //TRường hợp Null và số 
+    //TRường hợp khỏang trắng và số 
     public static void Test13() {
         try {
             MyBigNumberTest test = new MyBigNumberTest();
             MyBigNumber mybignumber = new MyBigNumber(test);
             System.out.println("Test 13:");
-            System.out.println("PASS : " + mybignumber.sum("", "546") + "\n");
+            System.out.println( mybignumber.sum(" ", "546") + "\n");
         } catch (NumberFormatException e) {
             System.out.println(e);
-            System.out.println("FAIL\n");
+           
         }
     }
     // Trường hợp Null và 0
@@ -204,10 +204,10 @@ public class MyBigNumberTest implements IReceiver {
              MyBigNumberTest test = new MyBigNumberTest();
             MyBigNumber mybignumber = new MyBigNumber(test);
             System.out.println("Test 14:");
-            System.out.println("PASS : " + mybignumber.sum("", "0") + "\n");
+            System.out.println( mybignumber.sum(null, "0") + "\n");
         } catch (NumberFormatException e) {
             System.out.println(e);
-            System.out.println("FAIL\n");
+           
         }
     }
 }
