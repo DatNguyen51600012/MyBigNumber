@@ -49,7 +49,7 @@ public class MyBigNumber {
         String tong = "";// tạo ra biến lưu kết quả
         
        
-        final int maxLength = (l1 > l2) ? l1 : l2; // tìm max độ dài chuỗi 
+        int maxLength = (l1 > l2) ? l1 : l2; // tìm max độ dài chuỗi 
         
         int nho = 0;// biến nhớ 
         int numSum = 0; // biến dùng để lưu kết phép cộng của từng kì tự trong chuỗi
