@@ -15,4 +15,4 @@ Cách sử dụng :
   - Bỏ vào ổ đĩa bạn chọn và nhập lênh "java -jar Disk:\JavaApplication.jar" và nhấn enter 
 ------------------------------------------------------------------------------
 Để chạy testcase cho phần mềm : 
-  - Tải thư mục MyBigNumber và sau đó Run project từ IDE Netbean 
+  - Tải thư mục MyBigNumber và sau đó Run project từ IDE Netbean , nhấn tổ hợp Alt + F6 để chạy Junit test
