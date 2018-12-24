@@ -19,7 +19,7 @@ Cách sử dụng :
   - Tải File MyBigNumber.zip ở link : https://drive.google.com/drive/folders/1O1sb4aatUuC8xp4rnH1Yw94ezAt51jgG 
   - Mở file 
   - Chép file MyBigNumber.jar và sum.cmd vào chỗ bạn muốn 
-  - Nhấn chuột phải hai lần vào file sum,cmd để chạy phần mềm
+  - Nhấn chuột phải hai lần vào file sum.cmd để chạy phần mềm
   - Nhập 2 số bạn cần tình ở hai ô đầu tiên 
 ------------------------------------------------------------------------------
 Để chạy testcase cho phần mềm : 
