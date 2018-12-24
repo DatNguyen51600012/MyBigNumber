@@ -20,135 +20,119 @@ import static org.junit.Assert.*;
  * @author Nguyễn Thành Đạt
  */
 public class MyBigNumberTest implements IReceiver{
-    
-    public void test1() {
-        
-            System.out.println("Test 1 :");
-            String str1 = "20";
-            String str2 = "20";
-            String expResult = "40";
+    // Trường hợp cộng bình thường
+    public void test1() {       
+            System.out.println("Test 1 :");            
             MyBigNumberTest test = new MyBigNumberTest();
             MyBigNumber mybignumber = new MyBigNumber(test);
-            String result = mybignumber.sum(str1, str2);
-            
-        
+            String result = mybignumber.sum("20", "20");
+            assertEquals("40",result);                    
     }
-
+    // Trường hợp cộng có nhớ
     @Test
-    public void test2() {
-        
+    public void test2() {        
             System.out.println("Test 2 :");
-            String str1 = "99";
-            String str2 = "99";
-            String expResult = "198";
             MyBigNumberTest test = new MyBigNumberTest();
             MyBigNumber mybignumber = new MyBigNumber(test);
-            String result = mybignumber.sum(str1, str2);
-            assertEquals(expResult, result);
-        
+            String result = mybignumber.sum("99", "99");
+            assertEquals("198",result);       
     }
-
+    // Trường hợp số thứ nhất nhiều hơn
     @Test
     public void test3() {
-        
-            System.out.println("Test 3 :");
-            String str1 = "999";
-            String str2 = "99";
-            String expResult = "1098";
+            String t = "1098";
+            System.out.println("Test 3:"); 
             MyBigNumberTest test = new MyBigNumberTest();
             MyBigNumber mybignumber = new MyBigNumber(test);
-            String result = mybignumber.sum(str1, str2);
-            
+            String result = mybignumber.sum("999", "99");
+            assertEquals(t,result);            
     }
-
+    // Trường hợp có chữ trong số
     @Test
     public void test4() {
         try {
-            System.out.println("Test 4 :");
-            String str1 = "99";
-            String str2 = "999a";            
+            System.out.println("Test 4 :");           
             MyBigNumberTest test = new MyBigNumberTest();
             MyBigNumber mybignumber = new MyBigNumber(test);
-            String result = mybignumber.sum(str1, str2);            
+            String result = mybignumber.sum("99a","99");         
         } catch (NumberFormatException e) {
-            System.out.println(e);
+            assertEquals(" Ở vị trí số : 3",e.getMessage());
         }
     }
-
+    // Trường hợp có kí tự không phải số
     @Test
-    public void test5() {
-        
+    public void test5() {   
         try {
             System.out.println("Test 5 :");
-            String str1 = "132";
-            String str2 = "455)";
             MyBigNumberTest test = new MyBigNumberTest();
             MyBigNumber mybignumber = new MyBigNumber(test);
-            String result = mybignumber.sum(str1, str2);
+            String result = mybignumber.sum( "482","455%");  
         } catch (NumberFormatException e) {
-            System.out.println(e);
+            assertEquals(" Ở vị trí số : 4",e.getMessage());
         }
     }
-    
+    // Trường hợp dữ liệu null
     @Test
     public void test6() {
-        
         System.out.println("Test 6 :");
         String str1 = "0";
         String str2 = null;
         MyBigNumberTest test = new MyBigNumberTest();
         MyBigNumber mybignumber = new MyBigNumber(test);
         String result = mybignumber.sum(str1, str2);
+        assertEquals("0",result);
+        
     }
-    
+    // Trường hợp số âm
     @Test
-    public void test7() {
-       
+    public void test7() {       
         try {
             System.out.println("Test 7 :");
-            String str1 = "12";
-            String str2 = "-45";
             MyBigNumberTest test = new MyBigNumberTest();
             MyBigNumber mybignumber = new MyBigNumber(test);
-            String result = mybignumber.sum(str1, str2);
+            String result = mybignumber.sum("1254", "-4554");
         } catch (NumberFormatException e) {
-            System.out.println(e);
+            assertEquals("Bạn vui lòng không nhập số âm : -4554",e.getMessage());
         }
     }
+    // Trường hợp số âm
     @Test
-    public void test8() {
-       
+    public void test8() {      
         try {
             System.out.println("Test 8 :");
-            String str1 = "-32";
-            String str2 = "45";
             MyBigNumberTest test = new MyBigNumberTest();
             MyBigNumber mybignumber = new MyBigNumber(test);
-            String result = mybignumber.sum(str1, str2);
+            String result = mybignumber.sum("-882", "45465");
         } catch (NumberFormatException e) {
-            System.out.println(e);
+            assertEquals("Bạn vui lòng không nhập số âm : -882",e.getMessage());   
         }
     }
+    // Trường hợp 0 và rỗng
     @Test
-    public void test9() {
-        
-        System.out.println("Test 9 :");
-        String str1 = "0";
-        String str2 = "";
+    public void test9() {        
+        System.out.println("Test 9 :");       
         MyBigNumberTest test = new MyBigNumberTest();
         MyBigNumber mybignumber = new MyBigNumber(test);
-        String result = mybignumber.sum(str1, str2);
+        String result = mybignumber.sum("0", "");
+        assertEquals("0",result);
     }
-    
+    // Trường hop chua nhập liệu và khoảng trống 
     @Test
-    public void test10() {
-        
-        System.out.println("Test 10 :");
-        String str1 = "";
-        String str2 = " ";
+    public void test10() {        
+        System.out.println("Test 10 :");       
         MyBigNumberTest test = new MyBigNumberTest();
         MyBigNumber mybignumber = new MyBigNumber(test);
-        String result = mybignumber.sum(str1, str2);
+        String result = mybignumber.sum(""," ");
+        assertEquals("0",result);
+    }
+    // Trường hợp chưa nhập 
+    @Test
+    public void test11() {       
+        System.out.println("Test 11 :");       
+        MyBigNumberTest test = new MyBigNumberTest();
+        MyBigNumber mybignumber = new MyBigNumber(test);
+        String result = mybignumber.sum("","0");
+        assertEquals("0",result);
     }
     
     
