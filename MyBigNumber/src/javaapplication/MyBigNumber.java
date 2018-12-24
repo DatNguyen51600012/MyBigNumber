@@ -16,6 +16,8 @@ public class MyBigNumber {
 
     private IReceiver ireceiver;
     
+    
+    
     public MyBigNumber(final IReceiver ireceiver) {
         this.ireceiver = ireceiver;
     }
@@ -28,122 +30,123 @@ public class MyBigNumber {
      * @param str2 chuỗi số thứ hai.
      */
     
-    public String sum(final String str1,final String str2) {
-        String chuoi1 = str1;// truyền giá trị chuỗi 1
-        String chuoi2 = str2;// truyền giá trị chuỗi 2
+    public String sum(final String str1,final String  str2) {
         
-        int l1 = str1.length(); // biến độ dài chuỗi 1
-        int l2 = str2.length(); // biến độ dài chuỗi 2
+        String s1 = str1 ; // s1 chứa giá trị chuỗi 1
+        String s2 = str2 ;// s2 chứa giá trị chuỗi 2
+               
         
-        // Nếu chuỗi chưa rỗng "" , " " , null
         // Nếu chuỗi null hoặc có nhiều khoảng trắng thì tính là số 0 
-        if ((str1 == null) || (str1.trim().isEmpty())) { 
-            chuoi1 = "0";
+        if (str1 == null || str1.trim().isEmpty()) { 
+            s1 = "0";
         }
 
-        if ((str2 == null) || (str2.trim().isEmpty())) {
-            chuoi2 = "0";
+        if (str1 == null || str2.trim().isEmpty()) {
+            s2 = "0";
         }
         
         String buoc = "";// số bước
         String tong = "";// tạo ra biến lưu kết quả
         
-       
-        int maxLength = (l1 > l2) ? l1 : l2; // tìm max độ dài chuỗi 
-        
+        int temp = 0; // bien chứa hàng đơn vị
         int nho = 0;// biến nhớ 
         int numSum = 0; // biến dùng để lưu kết phép cộng của từng kì tự trong chuỗi
-        
-        int vtri ; // Vị trí các kí tự trong chuỗi
-        
-        char c1 = '0';
-        char c2 = '0';
+                       
+        int c1 = 0; // chứa số của chuỗi 1
+        int c2 = 0; // chứa số của chuỗi 2
         
         // Bắt lỗi dữ liệu nhập vào nếu có
         // Nếu số nhập vào là âm thì không tính và báo lỗi
-        if (chuoi1.charAt(0) == '-') {
-            this.ireceiver.send("Không được nhập số âm : " + chuoi1);
-            throw new NumberFormatException("Bạn vui lòng không nhập số âm : " + chuoi1);
+        if (s1.charAt(0) == '-') {
+            this.ireceiver.send("Không được nhập số âm : " + s1);
+            throw new NumberFormatException("Bạn vui lòng không nhập số âm : " + s1);
         }
 
-        if (chuoi2.charAt(0) == '-') {
-            ireceiver.send("Không được nhập số âm : " + chuoi2);
-            throw new NumberFormatException("Bạn vui lòng không nhập số âm : " + chuoi2);
+        if (s2.charAt(0) == '-') {
+            ireceiver.send("Không được nhập số âm : " + s2);
+            throw new NumberFormatException("Bạn vui lòng không nhập số âm : " + s2);
         }
         
-        Pattern pattern = Pattern.compile("\\D"); // Chuỗi đại diện cho kí tự số từ [0-9]
-        final Matcher isError1 = pattern.matcher(chuoi1);// biến để lưu giữ kết quả xét chuỗi s1 
-        final Matcher isError2 = pattern.matcher(chuoi2);;// biến để lưu giữ kết quả xét chuỗi s2
-        int errorpos;
         
-        // Nếu nhập vào kí tự đặc biệt thì không tính và báo lỗi
-        if (isError1.find()) {
-            errorpos = isError1.start() + 1;
-            this.ireceiver.send("Vị trí " + errorpos + " trong chuỗi số " + chuoi1 + " không hợp lệ");
-            throw new NumException(errorpos);
-        }
-
-        if (isError2.find()) {
-            errorpos = isError2.start() + 1;
-            this.ireceiver.send("Vị trí " + errorpos + " trong chuỗi số " + chuoi2 + " không hợp lệ");
-            throw new NumException(errorpos);
-
-        }
-        
-        int i = 1;// khởi tạo biến đếm trong vòng lặp
+        int i;// khởi tạo biến đếm trong vòng lặp
         String p = "";
         
-        for (i = 1; i <= maxLength ; i++) { // Vòng lặp xét từng kí tự trong hai chuỗi
-          
-            c1 = ((l1 - i) >= 0) ? chuoi1.charAt(l1 - i) : '0';// nếu chuổi 1 hết ta sẽ ghi 0 ngược lại lấy kí tự cuối
-            c2 = ((l2 - i) >= 0) ? chuoi2.charAt(l2 - i) : '0';//nếu chuổi 2 hết ta sẽ ghi 0 ngược lại lấy kí tự cuối
+        int l1 = str1.length(); // biến độ dài chuỗi 1
+        int l2 = str2.length(); // biến độ dài chuỗi 2
+        int maxLength = l1 < l2 ? l1 : l2; // tìm max độ dài chuỗi 
+        
+        int index1; // kí tự đang xét chuỗi 1
+        int index2; // kí tự đang xét chuỗi 2
+        char chuoi1 ; // biến lấy từng kí tự chuỗi 1 để ktra
+        char chuoi2 ;// biến lấy từng kí tự chuỗi 2 để ktra
+        
+        
+        for (i = 0; i <= maxLength ; i++) { // Vòng lặp xét từng kí tự trong hai chuỗi
             
-            numSum = (c1 - '0') + (c2 - '0') + nho;// cộng kí tự cuối của chuổi và phần nhớ(nếu có) vào với nhau
-            tong = Integer.toString(numSum % 10) + tong; //ghi kết quả cộng vào biến kết quả
+            chuoi1 = (i < l1) ? s1.charAt(i) : '0';
+            chuoi2 = (i < l2) ? s2.charAt(i) : '0';
 
-            nho = numSum / 10; // lưu vào biến nhớ là 1 nếu hai số cộng lại quá 10
-
-            // xử lý các trường hợp của biến nhớ 
-            if (nho == 1) { 
-                if (chuoi2.length() - i >= 0) {
-                    p = "\n" + "* Bước " + i 
-                            + ", lấy " + c1 
-                            + " cộng " + c2 
-                            + " cộng " + nho 
-                            + " được " + numSum 
-                            + ", ghi " + numSum % 10 
-                            + ", nhớ " + nho 
-                            + "\n";
-                } else {
-                    p = "\n" + "* Bước " + i 
-                            + ", lấy " + c1 
-                            + " cộng " + nho 
-                            + " được " + numSum 
-                            + ", ghi " + numSum % 10 
-                            + ", nhớ " + nho 
-                            + "\n";
-                }
-            } else { 
-                if (chuoi2.length() - i >= 0) {
-                    p =  "\n" + "* Bước " + i + ", lấy " + c1 + " cộng " + c2 + " được " 
-                        + numSum + ", ghi " + numSum % 10 + "\n";
-                } else {
-                    p = "\n" + "* Bước " + i + ", lấy " + c1 + " cộng 0" + " được " 
-                        + numSum + ", ghi " + numSum % 10 + "\n";
-                }
+            if (!(chuoi1 >= '0' && chuoi1 <= '9')) {
+                this.ireceiver.send("\nSố thứ 1 có kí tự đặc biệt : " + s1);
+                throw new NumException((str1.indexOf(chuoi1) + 1));
             }
 
-            buoc = buoc + p;
+            if (!(chuoi2 >= '0' && chuoi2 <= '9')) {
+                this.ireceiver.send("\n Số thứ 2 có kí tự đặc biệt : " + s2);
+                throw new NumException((str2.indexOf(chuoi2) + 1));
+            }
+            
+            index1 = l1 - i - 1;
+            index2 = l2 - i - 1;
+            
+            c1 = ((i < l1) ? (s1.charAt(index1) - '0') : 0);// nếu chuổi 1 hết ta sẽ ghi 0 ngược lại lấy kí tự cuối
+            c2 = ((i < l2) ? (s2.charAt(index2) - '0') : 0);//nếu chuổi 2 hết ta sẽ ghi 0 ngược lại lấy kí tự cuối
+            
+            numSum = c1  +  c2 + nho ;// cộng kí tự cuối của chuổi  vào với nhau và biến nhớ
+            
+            temp = numSum % 10 ;
+            
+            // xử lý các trường hợp của biến nhớ 
+            if (nho == 0) {                 
+                buoc += "\n" 
+                            + "* Bước " + (i + 1) + " : " 
+                            + ", lấy " + c1 
+                            + " cộng " + c2                             
+                            + " được " + numSum 
+                            + ", ghi " + temp
+                            + ", nhớ " + numSum / 10 
+                            + "\n";
+            } else {
+                buoc += "\n" 
+                            + "* Bước " + (i + 1) + " : " 
+                            + ", lấy " + c1 
+                            + " cộng " + c2
+                            + ", nhớ " + nho
+                            + " được " + numSum 
+                            + ", ghi " + temp
+                            + ", nhớ " + nho 
+                            + "\n";
+            }
+                
+            nho = numSum / 10; // lưu vào biến nhớ là 1 nếu hai số cộng lại quá 10
+            tong = temp + tong; //tinh tong 
+            
         }
 
         // ghi phần nhớ 
         
-        if (nho == 1) { 
-            tong = Integer.toString(nho) + tong;
-            buoc = buoc + "\n" + "* Bước " + i + ", lấy " + nho + " ghi trước kết quả" + "\n" ;
+        if (nho > 0) { 
+            tong = nho + tong;
+            buoc += "\n" + "* Bước " + (i + 1) + " : "
+                    + ", lấy " + 0 
+                    + ", cộng " + 0
+                    + ", nhớ " + 1
+                    + ", bằng " + 1
+                    + ", viết" + 1
+                    + "\n";
         }
 
-        this.ireceiver.send(buoc);
+        this.ireceiver.send(buoc); // gửi từng bước ra màn hình
         
         return tong;// trả về kết quả của phép cộng
         
