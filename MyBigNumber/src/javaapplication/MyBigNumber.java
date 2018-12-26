@@ -57,13 +57,11 @@ public class MyBigNumber {
         
         // Bắt lỗi dữ liệu nhập vào nếu có
         // Nếu số nhập vào là âm thì không tính và báo lỗi
-        if (s1.charAt(0) == '-') {
-            this.ireceiver.send("Không được nhập số âm : " + s1);
+        if (s1.charAt(0) == '-') {            
             throw new NumberFormatException("Bạn vui lòng không nhập số âm : " + s1);
         }
 
         if (s2.charAt(0) == '-') {
-            ireceiver.send("Không được nhập số âm : " + s2);
             throw new NumberFormatException("Bạn vui lòng không nhập số âm : " + s2);
         }
         
